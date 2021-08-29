@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直/水平居中</title>
+    <style>
+        .position {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin: -100px 0 0 -100px;
+            background-color: gray;
+        }
+        .flow {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            background-color: black;
+        }
+        .flow_content {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            background-color: #f5f5f5;
+        }
+        .transition {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+        }
+        .trans_content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="position">
+        <div class="content">
+            思路一: 绝对定位方案, 绝对定位的基线是元素的左侧边缘和顶部边缘
+            1. 常规操作: margin值为负; 前提是div盒子的高度提前已知
+        </div>
+    </div>
+
+    <div class="flow">
+        <div class="flow_content">
+            <p>2. 深入理解元素的流体特性: 神奇的margin: auto</p>
+            <p>当我们想要水平居中某个元素时, 可以把它的margin设为 如下值: margin: 0 auto;</p>
+            <p>为什么设置auto可以让元素相对于父元素水平居中?这和auto属性的取值有关. auto在任何情况下, 只会取下面两种值中的一个: 父元素剩余空间的宽度和0</p>
+            <p>何时取父元素剩余空间, 何时取0?</p>
+            <p>这是由元素的布局方式决定的, 当元素的布局方式为static/relative且宽高已知时, auto取父元素剩余空间中的值;当元素的布局方式为postion/absolute/fixed或者float/inline或者宽高未知时, auto取0</p>
+            <p>auto的取值均指水平方向, 垂直方向上, auto不会自动填充</p>
+            <p>如何利用auto实现元素的垂直居中?</p>
+            <p>答: 利用元素的流体特性. 所谓流体特性, 看上去很高级, 实际非常简单:当一个绝对定位元素, 其对立定位方向属性同时有具体定位数值的时候, 流体特性就发生了</p>
+            <p>流体特性的妙处, 在于元素可自动填充父级元素的可用尺寸</p>
+            <p>当流体特性发生时, 我们可以给水平/垂直方向的对立定位(也就是left、right、top、bottom)各设定一个值, 然后将水平/垂直方向的margin均设为auto, 这样一来, auto就会自动平分父元素的剩余空间了</p>
+        </div>
+    </div>
+    <div class="transition">
+        <div class="trans_content">
+            <p>3. 动画属性: 在不确定宽高的情况下, 一般使用transform这个属性</p>
+            <p>transform 是css3引入的一个动画属性, 它允许我们对元素进行旋转、缩放、移动或倾斜.这里我们用到的translate对应的就是它的移动能力</p>
+            <p>translate接受两个参数, 分别对应元素沿着x轴的移动量和沿Y轴的移动量.这里我们两个都填了50%, 意思就是元素需要横向/纵向分别移动自身宽度/高度的50%</p>
+        </div>
+    </div>
+</body>
+</html>
