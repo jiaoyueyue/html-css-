@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC</title>
+</head>
+<body>
+    <p>
+        BFC是什么
+        BFC就是一个作用范围. 可以把它理解成是一个独立的容器.注意这个独立, 它意味着这个范围和外界是毫不相关的
+    </p>
+    <p>
+        BFC主要被用来解决以下常见的布局问题: 
+        1. 清除浮动
+        2. 阻止margin发生重叠
+           
+        3. 阻止元素被浮动的覆盖
+    </p>
+    <p>
+        常见的创建BFC的方法: 
+        1. float的值不是none;
+        2. position的值不是static或者relative;
+        3. display的值是inline-block、table-cell、flex、table-caption或者inline-flex;
+        4. overflow的值不是visible
+    </p>
+    <p>
+        为什么创建BFC可以清除浮动?
+        答: BFC是一个独立的区域.因为独立, 所以它要确保自己的作用范围不会对外界产生影响. 所以会自动把自己的宽高适应到能囊括子元素的程度
+
+    </p>
+</body>
+</html>
